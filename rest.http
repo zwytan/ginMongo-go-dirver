@@ -1,0 +1,32 @@
+@host=http://localhost:3001
+@prefix=/api/v1
+@token={{loginApi.response.body.token}}
+### 登录
+# @name loginApi
+POST {{host}}{{prefix}}/auth/login
+Content-Type: application/json 
+
+{
+    "adminname":"闰土1",
+    "password":"yangqi7'"
+}
+
+### InsertAdmin
+POST {{host}}{{prefix}}/auth/regist
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "name":       "xyf",
+    "email":      "l.7@qq.com",
+    "password":   "yangqi7'",
+    "roles":      ["admin"]
+}
+
+### refresh_token
+GET {{host}}{{prefix}}/refresh_token
+Authorization: Bearer {{token}}
+
+### test
+GET {{host}}/api/v1/test
+Authorization: Bearer {{token}}
